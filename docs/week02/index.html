@@ -64,29 +64,33 @@
   /* --- JSON ------------------------------------------------------------------------------------------------- --- */
   function callJson (place){
     var list = $('ul#json');
-    $.getJSON(url+'&q='+place+'?callback?',function(data){
-      var $aux = $('<li></li>');
-      var $div = $('<div class="well well-small"></div>')
-      list.append($aux);
-      $aux.append($div);
-      $div.append('<legend>' + data.name + '</legend>');
-      $div.append('<div> <div class="col-md-4"><b>Min Temp:</b> '+data.main.temp_min+'</div>  <div class="col-md-4"><b>Max Temp:</b> '+data.main.temp_max+'</div>  <div class="col-md-4"><b>Current Temp:</b> '+data.main.temp+'</div>  </div>');
-      $div.append('<div> <img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div>');
-      $div.append('<div>' + data.weather[0].description + '</div>');
+    $.getJSON(url+'&q='+place+'?callback?')
+      .done(function(data){
+        var $aux = $('<li></li>');
+        var $div = $('<div class="well well-small"></div>')
+        list.append($aux);
+        $aux.append($div);
+        $div.append('<legend>' + data.name + '</legend>');
+        $div.append('<div> <div class="col-md-4"><b>Min Temp:</b> '+data.main.temp_min+'</div>  <div class="col-md-4"><b>Max Temp:</b> '+data.main.temp_max+'</div>  <div class="col-md-4"><b>Current Temp:</b> '+data.main.temp+'</div>  </div>');
+        $div.append('<div> <img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div>');
+        $div.append('<div>' + data.weather[0].description + '</div>');
         $rain = $('<div></div>');
         $div.append($rain);
         $rain.append('<b>Rain Info:</b> ');
-      if(data.rain){
-        console.log(data.rain);
-        $.each(data.rain,function(index,item){
-          $rainTime = $('<ul></ul>');
-          $rainTime.append('<li><label class="label label-info">Rain volume for the last '+index + ': '+ item +'</label></li>');
-          $rain.append($rainTime);
-        });
-      }else{
-        $rain.append('<label class="label label-default">NO RAIN INFO</label>');
-      }
+        if(data.rain){
+          console.log(data.rain);
+          $.each(data.rain,function(index,item){
+            $rainTime = $('<ul></ul>');
+            $rainTime.append('<li><label class="label label-info">Rain volume for the last '+index + ': '+ item +'</label></li>');
+            $rain.append($rainTime);
+          });
+        }else{
+          $rain.append('<label class="label label-default">NO RAIN INFO</label>');
+        }
 
+      })
+      .fail(function(jqxhr, textStatus, error) {
+      console.log( jqxhr, textStatus, error);
     });
   }
 </script>
