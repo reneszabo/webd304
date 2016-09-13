@@ -8,11 +8,11 @@ var browserSync = require('browser-sync').create();
 gulp.task('browser-sync', function() {
   browserSync.init({
     server: {
-      baseDir: "./app"
+      baseDir: "./docs"
     }
   });
 
-  gulp.watch("app/**/*.html").on('change', browserSync.reload);
+  gulp.watch("docs/**/*.html").on('change', browserSync.reload);
 
 
 });
