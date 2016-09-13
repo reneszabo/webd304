@@ -57,10 +57,10 @@
         $div.append('<div> <div class="col-md-4"><b>Min Temp:</b> '+$xml.find('temperature').attr('min')+'</div>  <div class="col-md-4"><b>Max Temp:</b> '+$xml.find('temperature').attr('max')+'</div>  <div class="col-md-4"><b>Current Temp:</b> '+$xml.find('temperature').attr('value')+'</div>  </div>');
         $div.append('<div> <img src="http://openweathermap.org/img/w/' + $xml.find('weather').attr('icon') + '.png"></div>');
         $div.append('<div>' + $xml.find('weather').attr('value') + '</div>');
-      },
-      error: function(jqxhr, textStatus, error) {
-        console.log( jqxhr, textStatus, error);
       }
+
+    }).fail(function(jqxhr, textStatus, error) {
+        console.log( jqxhr, textStatus, error);
     });
   }
 
