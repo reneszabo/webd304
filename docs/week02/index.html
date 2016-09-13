@@ -60,7 +60,11 @@
       }
 
     }).fail(function(jqxhr, textStatus, error) {
-        console.log( jqxhr, textStatus, error);
+      var $aux = $('<li></li>');
+      var $div = $('<div class="well well-small"></div>')
+      list2.append($aux);
+      $aux.append($div);
+      $div.append('<strong> '+textStatus+' for ' + place + '</strong>');
     });
   }
 
@@ -94,6 +98,13 @@
       })
       .fail(function(jqxhr, textStatus, error) {
       console.log( jqxhr, textStatus, error);
+
+        var $aux = $('<li></li>');
+        var $div = $('<div class="well well-small"></div>')
+        list.append($aux);
+        $aux.append($div);
+        $div.append('<strong> '+textStatus+' for ' + place + '</strong>');
+
     });
   }
 </script>
