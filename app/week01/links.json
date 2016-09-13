@@ -1,0 +1,23 @@
+{
+  "links":
+  [
+    {
+      "id": 1,
+      "name":"w3school",
+      "url": "http://www.w3schools.com/",
+      "description": "The world's largest web developer site"
+    },
+    {
+      "id": 2,
+      "name":"Codeacademy",
+      "url": "https://www.codecademy.com/",
+      "description": "Interactive course on how to program"
+    },
+    {
+      "id": 3,
+      "name":"Code.org",
+      "url": "https://code.org/",
+      "description": "A non-profit organization that aims to encourage people to learn code"
+    }
+  ]
+}

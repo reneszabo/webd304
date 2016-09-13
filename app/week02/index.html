@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Calls</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <div class="col-md-6">
+
+    <legend>API Lesson - The Weather XML</legend>
+    <ul id="xml" class="nav nav-pill"></ul>
+  </div>
+  <div class="col-md-6">
+    <legend>API Lesson - The Weather JSON</legend>
+    <ul id="json" class="nav nav-pill"></ul>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+  var apiKey = 'e17ddc6f6ef4f762ff71477111d30b63';
+  var xmlMode = '&mode=xml';
+  var url = 'http://api.openweathermap.org/data/2.5/weather?appid='+apiKey+'&units=metric'
+  $(document).ready(function(){
+    /*XML*/
+    callXML('Toronto,ca');
+    callXML('Calgary,ca');
+    callXML('Vancouver,ca');
+    callXML('Quebec,ca');
+    callXML('Melbourne,au');
+    /*JSON*/
+    callJson('Toronto,ca');
+    callJson('Calgary,ca');
+    callJson('Vancouver,ca');
+    callJson('Quebec,ca');
+    callJson('Melbourne,au');
+  });
+
+
+  /* --- XML ---------------------------------------------------------------------------------------------------- --- */
+  function callXML (place){
+    var list2 = $('ul#xml');
+    $.ajax({
+      type: "GET",
+      url: url+xmlMode+'&q='+place,
+      dataType: "xml",
+      success: function (data) {
+        var $xml = $(data);
+        var $aux = $('<li></li>');
+        var $div = $('<div class="well well-small"></div>')
+        list2.append($aux);
+        $aux.append($div);
+        $div.append('<legend>' + $xml.find('city').attr('name') + '</legend>');
+        $div.append('<div> <div class="col-md-4"><b>Min Temp:</b> '+$xml.find('temperature').attr('min')+'</div>  <div class="col-md-4"><b>Max Temp:</b> '+$xml.find('temperature').attr('max')+'</div>  <div class="col-md-4"><b>Current Temp:</b> '+$xml.find('temperature').attr('value')+'</div>  </div>');
+        $div.append('<div> <img src="http://openweathermap.org/img/w/' + $xml.find('weather').attr('icon') + '.png"></div>');
+        $div.append('<div>' + $xml.find('weather').attr('value') + '</div>');
+      }
+    });
+  }
+
+  /* --- JSON ------------------------------------------------------------------------------------------------- --- */
+  function callJson (place){
+    var list = $('ul#json');
+    $.getJSON(url+'&q='+place+'?callback?',function(data){
+      var $aux = $('<li></li>');
+      var $div = $('<div class="well well-small"></div>')
+      list.append($aux);
+      $aux.append($div);
+      $div.append('<legend>' + data.name + '</legend>');
+      $div.append('<div> <div class="col-md-4"><b>Min Temp:</b> '+data.main.temp_min+'</div>  <div class="col-md-4"><b>Max Temp:</b> '+data.main.temp_max+'</div>  <div class="col-md-4"><b>Current Temp:</b> '+data.main.temp+'</div>  </div>');
+      $div.append('<div> <img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png"></div>');
+      $div.append('<div>' + data.weather[0].description + '</div>');
+        $rain = $('<div></div>');
+        $div.append($rain);
+        $rain.append('<b>Rain Info:</b> ');
+      if(data.rain){
+        console.log(data.rain);
+        $.each(data.rain,function(index,item){
+          $rainTime = $('<ul></ul>');
+          $rainTime.append('<li><label class="label label-info">Rain volume for the last '+index + ': '+ item +'</label></li>');
+          $rain.append($rainTime);
+        });
+      }else{
+        $rain.append('<label class="label label-default">NO RAIN INFO</label>');
+      }
+
+    });
+  }
+</script>
+</body>
+</html>

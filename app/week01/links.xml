@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<links>
+  <link id="1">
+    <name>w3school</name>
+    <url>http://www.w3schools.com/</url>
+    <description><![CDATA[The world's largest web developer site ]]></description>
+  </link>
+  <link id="2">
+    <name>Codeacademy</name>
+    <url>https://www.codecademy.com/</url>
+    <description><![CDATA[Interactive course on how to program]]></description>
+  </link>
+  <link id="3">
+    <name>Code.org</name>
+    <url>https://code.org/</url>
+    <description><![CDATA[A non-profit organization that aims to encourage people to learn code]]></description>
+  </link>
+</links>
