@@ -1,19 +1,90 @@
+@import "./../../partials/_variables.scss";
 @import 'https://fonts.googleapis.com/css?family=Crimson+Text:400,700|Open+Sans|Pinyon+Script';
 $color-01: #ffffff;
 $color-02: rgba(23,23,23,1);
 html,
 body,
-.container,
-.container-fluid,
-.row,
-.map-container,
-.hours-container,
-.be-social
+#hero .container-fluid,
+#hero .row
 {
   height: 100%;
 }
-h2{
-  font-family: 'Open Sans', sans-serif;
+.flex-center-all{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-col{
+  flex-direction: column;
+}
+
+
+@media (min-width: $screen-md-min) {
+  .hours-container,
+  .map-container,
+  .container-fluid,
+  .row,
+  #map
+  {
+    height: 100%;
+  }
+  .be-social, .be-social .flex-col{
+    height: 850px;
+  }
+
+  #social{
+    padding-top: 60px;
+    .be-social{
+      .flex-col{
+        margin: 0 auto;
+        width: 450px;
+        flex-direction: row;
+        &>div{
+          flex-grow: 1;
+          .btn{
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+
+}
+@media (max-width: $screen-md-min) {
+  .map-container{
+    height: 450px;
+    margin-bottom: 80px;
+  }
+  .hours-container.flex-center-all{
+    display: block;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  #social{
+    padding-top: 60px;
+    .be-social{
+      .flex-col{
+        margin: 0 auto;
+        width: 450px;
+        flex-direction: row;
+        &>div{
+          flex-grow: 1;
+          .btn{
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+    .title{
+      margin-top: 60px;
+    }
+  }
+}
+
+h2.title{
+  font-family: 'Pinyon Script', cursive;
+  font-size: 52px;
+  margin-bottom: 40px;
 }
 .box-out{
   background-color: $color-01;
@@ -26,21 +97,13 @@ h2{
     border: 2px black solid;
   }
 }
-.flex-center-all{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 #hero{
   background-color: $color-01;
   //background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   //background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
-  ///* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-  background-color: #ffffff;
   //background-image: url("https://www.transparenttextures.com/patterns/checkered-pattern.png");
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   height: 100%;
   flex-direction: column;
   .hero-one{
@@ -84,14 +147,14 @@ h2{
 
 
 #map{
-  height: 100%;
   .map-container{
     padding-left: 0px;
     padding-right: 0px;
-  #google-map{
-    width: 100%;
-    height: 100%;
-  }
+    min-height: 450px;
+    #google-map{
+      width: 100%;
+      height: 100%;
+    }
   }
   .hours-container{
     flex-direction: column;
@@ -111,17 +174,74 @@ h2{
 
 
 #social{
-  height: 100%;
+  .is-social{
+    .twitter-box{
+      .box-in{
+        height: 750px;
+        overflow-y: scroll;
+      }
+    }
+  }
+
+  .box-out{
+    margin-top: 0px;
+    margin-bottom: 45px;
+    .box-in{
+      padding: 0;
+      width: 450px;
+    }
+  }
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
   .be-social{
-    flex-direction: column;
-    background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
-    & > div{
-      flex-grow: 1;
+    //background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
+    //background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
+    //background-image: url("https://www.transparenttextures.com/patterns/checkered-pattern.png");
+    .btn-block{
+      width: 150px;
+    }
+  }
+  .btn-fb, .btn-tw{
+    border-radius: 0;
+    color: white;
+  }
+  .btn-fb{
+    background: #3b5998;
+    &:hover{
+      background: #8b9dc3;
+    }
+    &:active,&:focus{
+      background: #3b5998;
+    }
+
+  }
+  .btn-tw{
+    background: #55acee;
+    &:hover{
+      background: #8ec1da;
+    }
+    &:active,&:focus{
+      background: #55acee;
     }
   }
 }
 
-
+footer#footer{
+  padding-top: 20px;
+  background: #000;
+  height: 250px;
+  color: #fff;
+  h2{
+    margin-bottom: 0;
+    &.open{
+    font-family: serif;
+    }
+  }
+  h3{
+    margin-top: 0;
+    font-family: 'Crimson Text', serif;
+    font-size: 20px;
+  }
+}
 
 @keyframes pulse {
   0% {

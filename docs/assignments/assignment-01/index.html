@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+
 
   <meta property="og:image" content="http://example.com/ogp.jpg" />
   <meta property="og:image:secure_url" content="https://secure.example.com/ogp.jpg" />
@@ -20,6 +22,7 @@
 
 </head>
 <body>
+<div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -37,7 +40,6 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 </script>
-
 
 
 
@@ -71,30 +73,33 @@
         <div id="google-map"></div>
       </div>
       <div class="col-md-6 hours-container flex-center-all ">
-          <div class="text-center">
-            <div>
-              <strong>Currently</strong>
-            </div>
-            <div>
-              <span class="day"></span> - <span class="time"></span>
-            </div>
-            <div>
-              <span class="isOpen label text-uppercase">open</span>
-            </div>
-            <div class="hours-height"></div>
-            <div class="hours-height"></div>
+        <div class="text-center">
+          <h2 class="title">Location</h2>
+        </div>
+        <div class="text-center">
+          <div>
+            <strong>Currently</strong>
           </div>
-          <div class="box-out">
-            <div class="box-in text-center">
-              <h4 class="text-uppercase">monday - friday</h4>
-              <div><span>7:00 am - 7:00 pm</span></div>
-              <div class="hours-height"></div>
-              <h4 class="text-uppercase">saturday</h4>
-              <div><span>9:00 am - 5:00 pm</span></div>
-              <div class="hours-height"></div>
-              <h4 class="text-uppercase">suday</h4>
-              <div><strong>closed</strong></div>
-            </div>
+          <div>
+            <span class="day"></span> - <span class="time"></span>
+          </div>
+          <div>
+            <span class="isOpen label text-uppercase">open</span>
+          </div>
+          <div class="hours-height"></div>
+          <div class="hours-height"></div>
+        </div>
+        <div class="box-out">
+          <div class="box-in text-center">
+            <h4 class="text-uppercase">monday - friday</h4>
+            <div><span>7:00 am - 7:00 pm</span></div>
+            <div class="hours-height"></div>
+            <h4 class="text-uppercase">saturday</h4>
+            <div><span>9:00 am - 5:00 pm</span></div>
+            <div class="hours-height"></div>
+            <h4 class="text-uppercase">sunday</h4>
+            <div><strong>closed</strong></div>
+          </div>
         </div>
       </div>
 
@@ -107,26 +112,79 @@
 <section id="social">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 be-social">
+        <div class="flex-center-all flex-col">
+          <div class="">
+            <button class="btn btn-default btn-block btn-fb "><i class="fa fa-facebook"></i> Facebook</button>
+          </div>
+          <div class="">
+            <button class="btn btn-default btn-block btn-tw"><i class="fa fa-twitter"></i> Twitter</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 text-center is-social">
+
+
+        <div class="text-center">
+          <h2 class="title">Social</h2>
+        </div>
+        <div class="box-out facebook-box">
+
+          <div class="box-in">
+            <div class="fb-page"
+                 data-href="https://www.facebook.com/Thepreenersoakville/"
+                 data-tabs="timeline"
+                 data-small-header="false"
+                 data-adapt-container-width="true"
+                 data-hide-cover="false"
+                 data-width="500"
+                 data-height="750"
+                 data-show-facepile="true">
+              <blockquote
+                cite="https://www.facebook.com/Thepreenersoakville/"
+                class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/Thepreenersoakville/">The Preeners Oakville&#039;s Dry Cleaner</a>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="box-out twitter-box hide">
+          <div class="box-in">
+            <a class="twitter-timeline" href="https://twitter.com/preenersoak">Tweets by preenersoak</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </div>
+
+
 
       </div>
-      <div class="col-md-6 be-social flex-center-all">
-        <div class="flex-center-all">
-          <button class="btn btn-default btn-block ">Facebook</button>
-        </div>
-        <div class="flex-center-all">
-          <button class="btn btn-default btn-block"> twitter</button>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
+<footer id="footer">
+  <div class="text-center">
+    <h2 class="title">Have questions ?</h2>
+    <h3 class="title">give us a call</h3>
+    <h2 class="open">+1 289 644 2424</h2>
+  </div>
+</footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="../../dest/js/bootstrap.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGXDCgD-up9-Phe-dwyyK7YYJubPW_nGc&callback=initMap" async defer></script>
 <script src="../../dest/js/moment.js"></script>
 <script src="../../dest/js/dynamics.js"></script>
 <script type="text/javascript">
+
+  $(document).on('click','.be-social .btn',function(){
+    $('.facebook-box, .twitter-box').addClass('hide');
+    if($(this).hasClass('btn-fb')){
+      $('.facebook-box').removeClass('hide');
+    }else{
+      $('.twitter-box').removeClass('hide');
+    }
+  });
 
   /* --- MAP SECTION -------------------------------------------------------------------------------------------- --- */
   var map;
@@ -136,7 +194,7 @@
     pos = new google.maps.LatLng(43.442849, -79.767664);
     map = new google.maps.Map(document.getElementById('google-map'), {
       center: pos,
-      zoom: 14,
+      zoom: 16,
       scrollwheel: false,
       backgroundColor: "#ffffff",
       draggable: false,
