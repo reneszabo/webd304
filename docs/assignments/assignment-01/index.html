@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta property="og:image" content="http://example.com/ogp.jpg" />
+  <meta property="og:image:secure_url" content="https://secure.example.com/ogp.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="300" />
+
+
+
+
+  <title>The Preeners - Oakville</title>
+  <link rel="stylesheet" href="../../dest/css/vendor.css">
+  <link rel="stylesheet" href="../../dest/css/assignments/assignment-01/main.css">
+
+
+
+</head>
+<body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1787865771434605',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
+<section id="hero" class="flex-center-all">
+  <div class="hero-one flex-center-all">
+    <div class="box-out">
+      <div class="box-in text-center">
+        <h1>The Preeners</h1>
+        <h2 class="text-uppercase ">Oakville's - Dry Clearner</h2>
+        <h2 class="text-uppercase text-right"></h2>
+      </div>
+    </div>
+  </div>
+  <div class="hero-two flex-center-all">
+    <div class="scroll-down text-center">
+      scroll down
+      <i class="botton">
+      </i>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="map">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 map-container">
+        <div id="google-map"></div>
+      </div>
+      <div class="col-md-6 hours-container flex-center-all ">
+          <div class="text-center">
+            <div>
+              <strong>Currently</strong>
+            </div>
+            <div>
+              <span class="day"></span> - <span class="time"></span>
+            </div>
+            <div>
+              <span class="isOpen label text-uppercase">open</span>
+            </div>
+            <div class="hours-height"></div>
+            <div class="hours-height"></div>
+          </div>
+          <div class="box-out">
+            <div class="box-in text-center">
+              <h4 class="text-uppercase">monday - friday</h4>
+              <div><span>7:00 am - 7:00 pm</span></div>
+              <div class="hours-height"></div>
+              <h4 class="text-uppercase">saturday</h4>
+              <div><span>9:00 am - 5:00 pm</span></div>
+              <div class="hours-height"></div>
+              <h4 class="text-uppercase">suday</h4>
+              <div><strong>closed</strong></div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section id="social">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+
+      </div>
+      <div class="col-md-6 be-social flex-center-all">
+        <div class="flex-center-all">
+          <button class="btn btn-default btn-block ">Facebook</button>
+        </div>
+        <div class="flex-center-all">
+          <button class="btn btn-default btn-block"> twitter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="../../dest/js/bootstrap.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGXDCgD-up9-Phe-dwyyK7YYJubPW_nGc&callback=initMap" async defer></script>
+<script src="../../dest/js/moment.js"></script>
+<script src="../../dest/js/dynamics.js"></script>
+<script type="text/javascript">
+
+  /* --- MAP SECTION -------------------------------------------------------------------------------------------- --- */
+  var map;
+  var pos;
+  var marker;
+  function initMap() {
+    pos = new google.maps.LatLng(43.442849, -79.767664);
+    map = new google.maps.Map(document.getElementById('google-map'), {
+      center: pos,
+      zoom: 14,
+      scrollwheel: false,
+      backgroundColor: "#ffffff",
+      draggable: false,
+      styles: [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}]
+    });
+
+    setPrototypes();
+    marker = new CustomMarker({
+      position: pos,
+      map: map,
+    });
+    google.maps.event.addListener(marker, 'click', function(e) {
+      marker.animateBounce();
+    });
+
+  }
+  /* --- OPENING TIMES ------------------------------------------------------------------------------------------ --- */
+  $(document).ready(function(){
+    setInterval(getHourTimeAndDate,30000);
+    getHourTimeAndDate();
+  });
+  function getHourTimeAndDate(){
+    var day = moment().format('dddd');
+    $('#map .day').html(day);
+    $('#map .time').html(moment().format('h:mm a'));
+    var h = moment().format('HH')*1;
+    if(day=='Sunday'){
+      labelCloseOpen(false);
+    }else{
+      if(day=='Saturday'){
+        if(h>=9 && h<17 ){
+          labelCloseOpen(true);
+        }else{
+          labelCloseOpen(false);
+        }
+      }else{
+        if(h>=7 && h<19 ){
+          labelCloseOpen(true);
+        }else{
+          labelCloseOpen(false);
+        }
+      }
+    }
+  }
+  function labelCloseOpen(isOpen){
+    if(isOpen){
+      $('.isOpen').removeClass('label-danger');
+      $('.isOpen').addClass('label-success');
+      $('.isOpen').html('open');
+    }else{
+      $('.isOpen').removeClass('label-success');
+      $('.isOpen').addClass('label-danger');
+      $('.isOpen').html('close');
+    }
+  }
+
+
+</script>
+<script src="js/google-custom-marker.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "name": "webd303",
+  "description": "Class Webd 303",
+  "main": "index.js",
+  "authors": [
+    "Rene Ramirez"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/reneszabo/webd303",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "components-font-awesome": "^4.6.3",
+    "bootstrap-sass": "^3.3.7",
+    "moment": "^2.15.1",
+    "dynamics.js": "^1.1.1"
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": [
+        "assets/javascripts/bootstrap.js",
+        "assets/stylesheets/_bootstrap.scss",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.eot",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.svg",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.ttf",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.woff",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.woff2"
+      ]
+    },
+    "components-font-awesome": {
+      "main": [
+        "scss/font-awesome.scss",
+        "fonts/FontAwesome.otf",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2"
+      ]
+    }
+  }
+}
